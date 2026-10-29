@@ -1,0 +1,186 @@
+{
+  "titles": {
+    "login": "登录 - FastAPI Template",
+    "signup": "注册 - FastAPI Template",
+    "recoverPassword": "找回密码 - FastAPI Template",
+    "resetPassword": "重置密码 - FastAPI Template",
+    "dashboard": "仪表盘 - FastAPI Template",
+    "items": "条目 - FastAPI Template",
+    "settings": "设置 - FastAPI Template",
+    "admin": "管理 - FastAPI Template"
+  },
+  "common": {
+    "email": "邮箱",
+    "password": "密码",
+    "fullName": "姓名",
+    "confirmPassword": "确认密码",
+    "actions": "操作",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "save": "保存",
+    "user": "用户",
+    "na": "暂无"
+  },
+  "auth": {
+    "login": {
+      "title": "登录你的账户",
+      "submit": "登录",
+      "forgotPassword": "忘记密码？",
+      "noAccount": "还没有账户？",
+      "signUpLink": "注册"
+    },
+    "signup": {
+      "title": "创建账户",
+      "submit": "注册",
+      "haveAccount": "已有账户？",
+      "logInLink": "登录"
+    },
+    "recoverPassword": {
+      "title": "找回密码",
+      "submit": "继续",
+      "remember": "想起密码了？",
+      "successToast": "找回密码邮件已发送"
+    },
+    "resetPassword": {
+      "title": "重置密码",
+      "submit": "重置密码",
+      "remember": "想起密码了？",
+      "successToast": "密码已更新"
+    }
+  },
+  "validation": {
+    "invalidEmail": "邮箱地址无效",
+    "passwordRequired": "请输入密码",
+    "passwordMinLength": "密码至少 8 个字符",
+    "passwordConfirmationRequired": "请确认密码",
+    "passwordsDontMatch": "两次输入的密码不一致",
+    "fullNameRequired": "请输入姓名",
+    "titleRequired": "请输入标题"
+  },
+  "dashboard": {
+    "greeting": "{{name}}，你好 👋",
+    "welcomeBack": "欢迎回来，很高兴再见到你！"
+  },
+  "sidebar": {
+    "dashboard": "仪表盘",
+    "items": "条目",
+    "admin": "管理",
+    "userSettings": "用户设置",
+    "logOut": "退出登录"
+  },
+  "appearance": {
+    "title": "外观",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "toggleSr": "切换主题"
+  },
+  "language": {
+    "title": "语言",
+    "auto": "自动（跟随浏览器）",
+    "chinese": "中文（简体）",
+    "english": "English",
+    "toggleSr": "切换语言"
+  },
+  "items": {
+    "heading": "条目",
+    "subtitle": "创建并管理你的条目",
+    "add": "添加条目",
+    "emptyTitle": "还没有任何条目",
+    "emptySubtitle": "添加一个新条目开始吧",
+    "colId": "ID",
+    "colTitle": "标题",
+    "colDescription": "描述",
+    "noDescription": "暂无描述",
+    "copyIdSr": "复制 ID",
+    "editItem": "编辑条目",
+    "deleteItem": "删除条目",
+    "addDescription": "填写详细信息以添加新条目。",
+    "editDescription": "在下方更新条目信息。",
+    "deleteDescription": "该条目将被永久删除。确定吗？此操作无法撤销。",
+    "titlePlaceholder": "标题",
+    "descriptionPlaceholder": "描述",
+    "createdToast": "条目创建成功",
+    "updatedToast": "条目更新成功",
+    "deletedToast": "条目已删除"
+  },
+  "users": {
+    "heading": "用户",
+    "subtitle": "管理用户账户与权限",
+    "add": "添加用户",
+    "colFullName": "姓名",
+    "colRole": "角色",
+    "colStatus": "状态",
+    "roleSuperuser": "超级管理员",
+    "roleUser": "普通用户",
+    "statusActive": "活跃",
+    "statusInactive": "停用",
+    "you": "我",
+    "editUser": "编辑用户",
+    "deleteUser": "删除用户",
+    "addDescription": "填写以下表单向系统添加新用户。",
+    "editDescription": "在下方更新用户信息。",
+    "deleteDescription": "该用户的所有条目也将被<strong>永久删除</strong>。确定吗？此操作无法撤销。",
+    "setPassword": "设置密码",
+    "isSuperuser": "超级管理员？",
+    "isActive": "启用？",
+    "fullNamePlaceholder": "姓名",
+    "createdToast": "用户创建成功",
+    "updatedToast": "用户已更新",
+    "deletedToast": "用户已删除"
+  },
+  "settings": {
+    "heading": "用户设置",
+    "subtitle": "管理你的账户设置与偏好",
+    "tabProfile": "我的资料",
+    "tabPassword": "密码",
+    "tabDanger": "危险操作",
+    "userInfoTitle": "用户信息",
+    "changePasswordTitle": "修改密码",
+    "currentPassword": "当前密码",
+    "newPassword": "新密码",
+    "updatePassword": "更新密码",
+    "deleteAccountTitle": "删除账户",
+    "deleteAccountDescription": "永久删除你的账户及所有相关数据。",
+    "deleteAccountButton": "删除账户",
+    "deleteConfirmTitle": "需要确认",
+    "deleteConfirmDescription": "你的所有账户数据将被<strong>永久删除</strong>。如确定，请点击<strong>“确认”</strong>继续。此操作无法撤销。",
+    "passwordUpdatedToast": "密码已更新",
+    "userUpdatedToast": "用户已更新",
+    "accountDeletedToast": "你的账户已成功删除"
+  },
+  "toasts": {
+    "successTitle": "成功！",
+    "errorTitle": "出错了！",
+    "unknownError": "出错了。"
+  },
+  "dataTable": {
+    "noResults": "未找到结果。",
+    "showingEntries": "显示第 {{from}}–{{to}} 条，共 {{total}} 条",
+    "rowsPerPage": "每页行数",
+    "pageInfo": "第 {{page}} 页，共 {{count}} 页",
+    "firstPageSr": "转到第一页",
+    "previousPageSr": "上一页",
+    "nextPageSr": "下一页",
+    "lastPageSr": "转到最后一页"
+  },
+  "footer": {
+    "text": "Full Stack FastAPI Template - {{year}}"
+  },
+  "notFound": {
+    "oops": "哎呀！",
+    "text": "你访问的页面不存在。",
+    "back": "返回"
+  },
+  "errorPage": {
+    "title": "错误",
+    "oops": "哎呀！",
+    "text": "出错了，请重试。",
+    "home": "回到首页"
+  },
+  "passwordInput": {
+    "show": "显示密码",
+    "hide": "隐藏密码"
+  }
+}

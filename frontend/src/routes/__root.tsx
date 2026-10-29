@@ -3,11 +3,13 @@ import { createRootRoute, HeadContent, Outlet } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import ErrorComponent from "@/components/Common/ErrorComponent"
 import NotFound from "@/components/Common/NotFound"
+import { UiLanguageController } from "@/i18n/useUiLanguage"
 
 export const Route = createRootRoute({
   component: () => (
     <>
       <HeadContent />
+      <UiLanguageController />
       <Outlet />
       <TanStackRouterDevtools position="bottom-right" />
       <ReactQueryDevtools initialIsOpen={false} />

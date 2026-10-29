@@ -207,6 +207,10 @@ export type UserCreate = {
      */
     full_name?: string | null;
     /**
+     * Language
+     */
+    language?: string | null;
+    /**
      * Password
      */
     password: string;
@@ -233,6 +237,10 @@ export type UserPublic = {
      */
     full_name?: string | null;
     /**
+     * Language
+     */
+    language?: string | null;
+    /**
      * Id
      */
     id: string;
@@ -258,6 +266,10 @@ export type UserRegister = {
      * Full Name
      */
     full_name?: string | null;
+    /**
+     * Language
+     */
+    language?: string | null;
 };
 
 /**
@@ -298,6 +310,10 @@ export type UserUpdateMe = {
      * Email
      */
     email?: string | null;
+    /**
+     * Language
+     */
+    language?: string | null;
 };
 
 /**

@@ -1,12 +1,22 @@
 import uuid
 from datetime import UTC, datetime
 
-from pydantic import EmailStr
+from pydantic import EmailStr, field_validator
 from sqlmodel import Field, Relationship, SQLModel
+
+from app.core.i18n import SUPPORTED_LANGUAGES
 
 
 def get_datetime_utc() -> datetime:
     return datetime.now(UTC)
+
+
+def validate_language(value: str | None) -> str | None:
+    if value is not None and value not in SUPPORTED_LANGUAGES:
+        raise ValueError(
+            f"Unsupported language, must be one of: {', '.join(SUPPORTED_LANGUAGES)}"
+        )
+    return value
 
 
 # Shared properties
@@ -15,6 +25,9 @@ class UserBase(SQLModel):
     is_active: bool = True
     is_superuser: bool = False
     full_name: str | None = Field(default=None, max_length=255)
+    language: str | None = Field(default=None, max_length=16)
+
+    _validate_language = field_validator("language")(validate_language)
 
 
 # Properties to receive via API on creation
@@ -26,6 +39,9 @@ class UserRegister(SQLModel):
     email: EmailStr = Field(max_length=255)
     password: str = Field(min_length=8, max_length=128)
     full_name: str | None = Field(default=None, max_length=255)
+    language: str | None = Field(default=None, max_length=16)
+
+    _validate_language = field_validator("language")(validate_language)
 
 
 # Properties to receive via API on update, all are optional
@@ -40,6 +56,9 @@ class UserUpdate(SQLModel):
 class UserUpdateMe(SQLModel):
     full_name: str | None = Field(default=None, max_length=255)
     email: EmailStr | None = Field(default=None, max_length=255)
+    language: str | None = Field(default=None, max_length=16)
+
+    _validate_language = field_validator("language")(validate_language)
 
 
 class UpdatePassword(SQLModel):

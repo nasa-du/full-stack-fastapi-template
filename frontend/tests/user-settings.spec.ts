@@ -224,6 +224,7 @@ test("User can switch between theme modes", async ({ page }) => {
 test("Selected mode is preserved across sessions", async ({ page }) => {
   await page.goto("/settings")
 
+  // Normalize to light mode and leave the menu closed before the next step.
   await page.getByTestId("theme-button").click()
   if (
     await page.evaluate(() =>
@@ -231,8 +232,10 @@ test("Selected mode is preserved across sessions", async ({ page }) => {
     )
   ) {
     await page.getByTestId("light-mode").click()
-    await page.getByTestId("theme-button").click()
+  } else {
+    await page.keyboard.press("Escape")
   }
+  await expect(page.getByTestId("light-mode")).toHaveCount(0)
 
   const isLightMode = await page.evaluate(() =>
     document.documentElement.classList.contains("light"),
