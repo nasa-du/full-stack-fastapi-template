@@ -18,86 +18,6 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: Record<string, unknown>;
 };
 
-export class ItemsService {
-    /**
-     * Read Items
-     *
-     * Retrieve items.
-     */
-    public static readItems<ThrowOnError extends boolean = true>(options?: Options<itemsReadItemsData, ThrowOnError>) {
-        return (options?.client ?? client).get<itemsReadItemsResponses, itemsReadItemsErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/',
-            ...options
-        });
-    }
-    
-    /**
-     * Create Item
-     *
-     * Create new item.
-     */
-    public static createItem<ThrowOnError extends boolean = true>(options: Options<itemsCreateItemData, ThrowOnError>) {
-        return (options.client ?? client).post<itemsCreateItemResponses, itemsCreateItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers
-            }
-        });
-    }
-    
-    /**
-     * Delete Item
-     *
-     * Delete an item.
-     */
-    public static deleteItem<ThrowOnError extends boolean = true>(options: Options<itemsDeleteItemData, ThrowOnError>) {
-        return (options.client ?? client).delete<itemsDeleteItemResponses, itemsDeleteItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/{id}',
-            ...options
-        });
-    }
-    
-    /**
-     * Read Item
-     *
-     * Get item by ID.
-     */
-    public static readItem<ThrowOnError extends boolean = true>(options: Options<itemsReadItemData, ThrowOnError>) {
-        return (options.client ?? client).get<itemsReadItemResponses, itemsReadItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/{id}',
-            ...options
-        });
-    }
-    
-    /**
-     * Update Item
-     *
-     * Update an item.
-     */
-    public static updateItem<ThrowOnError extends boolean = true>(options: Options<itemsUpdateItemData, ThrowOnError>) {
-        return (options.client ?? client).put<itemsUpdateItemResponses, itemsUpdateItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/{id}',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers
-            }
-        });
-    }
-}
-
 export class LoginService {
     /**
      * Login Access Token
@@ -132,20 +52,6 @@ export class LoginService {
     }
     
     /**
-     * Recover Password Html Content
-     *
-     * HTML Content for Password Recovery
-     */
-    public static recoverPasswordHtmlContent<ThrowOnError extends boolean = true>(options: Options<loginRecoverPasswordHtmlContentData, ThrowOnError>) {
-        return (options.client ?? client).post<loginRecoverPasswordHtmlContentResponses, loginRecoverPasswordHtmlContentErrors, ThrowOnError>({
-            responseType: 'text',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/password-recovery-html-content/{email}',
-            ...options
-        });
-    }
-    
-    /**
      * Recover Password
      *
      * Password Recovery
@@ -174,23 +80,18 @@ export class LoginService {
             }
         });
     }
-}
-
-export class PrivateService {
+    
     /**
-     * Create User
+     * Recover Password Html Content
      *
-     * Create a new user.
+     * HTML Content for Password Recovery
      */
-    public static createUser<ThrowOnError extends boolean = true>(options: Options<privateCreateUserData, ThrowOnError>) {
-        return (options.client ?? client).post<privateCreateUserResponses, privateCreateUserErrors, ThrowOnError>({
-            responseType: 'json',
-            url: '/api/v1/private/users/',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers
-            }
+    public static recoverPasswordHtmlContent<ThrowOnError extends boolean = true>(options: Options<loginRecoverPasswordHtmlContentData, ThrowOnError>) {
+        return (options.client ?? client).post<loginRecoverPasswordHtmlContentResponses, loginRecoverPasswordHtmlContentErrors, ThrowOnError>({
+            responseType: 'text',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/password-recovery-html-content/{email}',
+            ...options
         });
     }
 }
@@ -358,17 +259,6 @@ export class UsersService {
 
 export class UtilsService {
     /**
-     * Health Check
-     */
-    public static healthCheck<ThrowOnError extends boolean = true>(options?: Options<utilsHealthCheckData, ThrowOnError>) {
-        return (options?.client ?? client).get<utilsHealthCheckResponses, unknown, ThrowOnError>({
-            responseType: 'json',
-            url: '/api/v1/utils/health-check/',
-            ...options
-        });
-    }
-    
-    /**
      * Test Email
      *
      * Test emails.
@@ -379,6 +269,116 @@ export class UtilsService {
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/api/v1/utils/test-email/',
             ...options
+        });
+    }
+    
+    /**
+     * Health Check
+     */
+    public static healthCheck<ThrowOnError extends boolean = true>(options?: Options<utilsHealthCheckData, ThrowOnError>) {
+        return (options?.client ?? client).get<utilsHealthCheckResponses, unknown, ThrowOnError>({
+            responseType: 'json',
+            url: '/api/v1/utils/health-check/',
+            ...options
+        });
+    }
+}
+
+export class ItemsService {
+    /**
+     * Read Items
+     *
+     * Retrieve items.
+     */
+    public static readItems<ThrowOnError extends boolean = true>(options?: Options<itemsReadItemsData, ThrowOnError>) {
+        return (options?.client ?? client).get<itemsReadItemsResponses, itemsReadItemsErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/items/',
+            ...options
+        });
+    }
+    
+    /**
+     * Create Item
+     *
+     * Create new item.
+     */
+    public static createItem<ThrowOnError extends boolean = true>(options: Options<itemsCreateItemData, ThrowOnError>) {
+        return (options.client ?? client).post<itemsCreateItemResponses, itemsCreateItemErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/items/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Item
+     *
+     * Delete an item.
+     */
+    public static deleteItem<ThrowOnError extends boolean = true>(options: Options<itemsDeleteItemData, ThrowOnError>) {
+        return (options.client ?? client).delete<itemsDeleteItemResponses, itemsDeleteItemErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/items/{id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Read Item
+     *
+     * Get item by ID.
+     */
+    public static readItem<ThrowOnError extends boolean = true>(options: Options<itemsReadItemData, ThrowOnError>) {
+        return (options.client ?? client).get<itemsReadItemResponses, itemsReadItemErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/items/{id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Update Item
+     *
+     * Update an item.
+     */
+    public static updateItem<ThrowOnError extends boolean = true>(options: Options<itemsUpdateItemData, ThrowOnError>) {
+        return (options.client ?? client).put<itemsUpdateItemResponses, itemsUpdateItemErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/items/{id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+}
+
+export class PrivateService {
+    /**
+     * Create User
+     *
+     * Create a new user.
+     */
+    public static createUser<ThrowOnError extends boolean = true>(options: Options<privateCreateUserData, ThrowOnError>) {
+        return (options.client ?? client).post<privateCreateUserResponses, privateCreateUserErrors, ThrowOnError>({
+            responseType: 'json',
+            url: '/api/v1/private/users/',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
         });
     }
 }
