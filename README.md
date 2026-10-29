@@ -16,6 +16,7 @@
   - 🤖 An automatically generated frontend client.
   - 🧪 [Playwright](https://playwright.dev) for end-to-end testing.
   - 🦇 Dark mode support.
+  - 🌐 English and Simplified Chinese UI with [react-i18next](https://react.i18next.com).
 - ☁️ [FastAPI Cloud](https://fastapicloud.com) for deployment.
 - 🐋 [Docker Compose](https://www.docker.com) for local services and self-hosted deployment.
   - 📞 [Traefik](https://traefik.io) as a reverse proxy with automatic HTTPS.
@@ -26,6 +27,24 @@
 - 📬 [Mailpit](https://mailpit.axllent.org) for local email testing during development.
 - ✅ Tests with [Pytest](https://pytest.org).
 - 🏭 CI (continuous integration) and CD (continuous deployment) based on GitHub Actions.
+
+### Language Support
+
+The UI ships in English and Simplified Chinese (`zh-Hans`):
+
+- The initial language follows the browser: any `zh-*` locale resolves to
+  Simplified Chinese, anything else to English.
+- Signed-in users can switch languages from the sidebar; the choice is stored
+  on their account and survives refreshes and other sessions.
+- Signed-out visitors can switch language on the login, signup and password
+  recovery pages. The choice is applied to their account when they sign in or
+  sign up.
+- Selecting **Auto** clears the account preference and follows the browser
+  again.
+
+The terminology and design decisions are documented in
+[CONTEXT.md](./CONTEXT.md) and
+[ADR 0001](./docs/adr/0001-ui-language-strategy.md).
 
 ### Dashboard Login
 
