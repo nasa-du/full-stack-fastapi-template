@@ -339,6 +339,66 @@ def test_register_user(client: TestClient, db: Session) -> None:
     assert verified
 
 
+def test_update_user_me_language(
+    client: TestClient, normal_user_token_headers: dict[str, str], db: Session
+) -> None:
+    r = client.patch(
+        f"{settings.API_V1_STR}/users/me",
+        headers=normal_user_token_headers,
+        json={"language": "zh-Hans"},
+    )
+    assert r.status_code == 200
+    assert r.json()["language"] == "zh-Hans"
+
+    # The normal user's email is changed by test_update_user_me, so look it up by id
+    user_id = uuid.UUID(r.json()["id"])
+    user_db = db.get(User, user_id)
+    assert user_db
+    db.refresh(user_db)
+    assert user_db.language == "zh-Hans"
+
+    # Explicitly setting null clears the preference (back to "follow browser")
+    r = client.patch(
+        f"{settings.API_V1_STR}/users/me",
+        headers=normal_user_token_headers,
+        json={"language": None},
+    )
+    assert r.status_code == 200
+    assert r.json()["language"] is None
+
+
+def test_update_user_me_invalid_language(
+    client: TestClient, normal_user_token_headers: dict[str, str]
+) -> None:
+    r = client.patch(
+        f"{settings.API_V1_STR}/users/me",
+        headers=normal_user_token_headers,
+        json={"language": "fr"},
+    )
+    assert r.status_code == 422
+
+
+def test_register_user_with_language(client: TestClient, db: Session) -> None:
+    username = random_email()
+    password = random_lower_string()
+    data = {
+        "email": username,
+        "password": password,
+        "language": "zh-Hans",
+    }
+    r = client.post(
+        f"{settings.API_V1_STR}/users/signup",
+        json=data,
+    )
+    assert r.status_code == 200
+    assert r.json()["language"] == "zh-Hans"
+
+    user_query = select(User).where(User.email == username)
+    user_db = db.exec(user_query).first()
+    assert user_db
+    assert user_db.language == "zh-Hans"
+
+
 def test_register_user_already_exists_error(client: TestClient) -> None:
     password = random_lower_string()
     full_name = random_lower_string()
