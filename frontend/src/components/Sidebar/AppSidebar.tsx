@@ -1,6 +1,8 @@
 import { Briefcase, Home, Users } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 import { SidebarAppearance } from "@/components/Common/Appearance"
+import { SidebarLanguage } from "@/components/Common/Language"
 import { Logo } from "@/components/Common/Logo"
 import {
   Sidebar,
@@ -12,17 +14,17 @@ import useAuth from "@/hooks/useAuth"
 import { type Item, Main } from "./Main"
 import { User } from "./User"
 
-const baseItems: Item[] = [
-  { icon: Home, title: "Dashboard", path: "/" },
-  { icon: Briefcase, title: "Items", path: "/items" },
-]
-
 export function AppSidebar() {
+  const { t } = useTranslation()
   const { user: currentUser } = useAuth()
 
-  const items = currentUser?.is_superuser
-    ? [...baseItems, { icon: Users, title: "Admin", path: "/admin" }]
-    : baseItems
+  const items: Item[] = [
+    { icon: Home, title: t("sidebar.dashboard"), path: "/" },
+    { icon: Briefcase, title: t("sidebar.items"), path: "/items" },
+  ]
+  if (currentUser?.is_superuser) {
+    items.push({ icon: Users, title: t("sidebar.admin"), path: "/admin" })
+  }
 
   return (
     <Sidebar collapsible="icon">
@@ -34,6 +36,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarAppearance />
+        <SidebarLanguage />
         <User user={currentUser} />
       </SidebarFooter>
     </Sidebar>
